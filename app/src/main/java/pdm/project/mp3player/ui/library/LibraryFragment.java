@@ -1,5 +1,7 @@
 package pdm.project.mp3player.ui.library;
 
+import static pdm.project.mp3player.MainActivity.musicFiles;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import pdm.project.mp3player.R;
 import pdm.project.mp3player.databinding.FragmentLibraryBinding;
+import pdm.project.mp3player.ui.MusicAdapter;
 
 public class LibraryFragment extends Fragment {
 
     private FragmentLibraryBinding binding;
+    RecyclerView recyclerView;
+    MusicAdapter musicAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -23,9 +31,21 @@ public class LibraryFragment extends Fragment {
 
         binding = FragmentLibraryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        // View view = inflater.inflate(R.layout.fragment_library, container, false);
+        // recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView = root.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
 
-        final TextView textView = binding.textNotifications;
-        libraryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        if (!(musicFiles.size() < 1)) {
+            musicAdapter = new MusicAdapter(getContext(), musicFiles);
+            recyclerView.setAdapter(musicAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
+        }
+        // final TextView textView = binding.textNotifications;
+        // libraryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+
+
         return root;
     }
 

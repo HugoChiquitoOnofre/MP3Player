@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int REQUEST_CODE = 1;
 
     //MP3
-    ArrayList<MusicFiles> musicFiles;
+    public static ArrayList<MusicFiles> musicFiles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
