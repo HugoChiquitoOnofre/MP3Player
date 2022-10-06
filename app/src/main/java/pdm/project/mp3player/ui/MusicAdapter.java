@@ -42,6 +42,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        //Log.e("MusicAdapter:onBindViewHolder", "aqui?");
         holder.fileName.setText(musicFiles.get(position).getTitle());
         byte[] image = getAlbumArt(musicFiles.get(position).getPath());
 
@@ -55,7 +56,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
                     .load(R.drawable.avatar_256_725 )
                     .into(holder.albumArt);
         }
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -9,9 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="background_menu">#211F1F</color>
-    <color name="background">#353535</color>
+    <color name="background">#2C2C2C</color>
     <color name="optional">#36136F</color>
     <color name="background_buttons">#0396A6</color>
-    <color name="text">#EBEDEE</color>
+    <color name="text">#f4f4f4</color>
 
 </resources>

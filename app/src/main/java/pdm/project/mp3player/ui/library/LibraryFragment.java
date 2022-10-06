@@ -3,6 +3,7 @@ package pdm.project.mp3player.ui.library;
 import static pdm.project.mp3player.MainActivity.musicFiles;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +23,11 @@ public class LibraryFragment extends Fragment {
 
     private FragmentLibraryBinding binding;
     RecyclerView recyclerView;
-    MusicAdapter musicAdapter;
+    public static MusicAdapter musicAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        LibraryViewModel libraryViewModel =
+            LibraryViewModel libraryViewModel =
                 new ViewModelProvider(this).get(LibraryViewModel.class);
 
         binding = FragmentLibraryBinding.inflate(inflater, container, false);
@@ -37,15 +38,16 @@ public class LibraryFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         if (!(musicFiles.size() < 1)) {
+
+            Log.e("LibraryFragment: ", "Listando canciones...");
             musicAdapter = new MusicAdapter(getContext(), musicFiles);
+            Log.e("LibraryFragment:", "MusicAdapter creado");
             recyclerView.setAdapter(musicAdapter);
+            Log.e("LibraryFragment:" ,"Adaptador establecido");
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         }
         // final TextView textView = binding.textNotifications;
         // libraryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
-
-
         return root;
     }
 
