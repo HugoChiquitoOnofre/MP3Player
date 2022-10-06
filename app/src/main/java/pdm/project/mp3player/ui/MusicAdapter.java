@@ -52,6 +52,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder
                     .into(holder.albumArt);
         }
         else {
+
             Glide.with(mContext).asBitmap()
                     .load(R.drawable.avatar_256_725 )
                     .into(holder.albumArt);
