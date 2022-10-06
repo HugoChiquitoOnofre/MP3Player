@@ -3,6 +3,7 @@ package pdm.project.mp3player;
 import static pdm.project.mp3player.MainActivity.musicFiles;
 import static pdm.project.mp3player.MainActivity.repeatBoolean;
 import static pdm.project.mp3player.MainActivity.shuffleBoolean;
+import static pdm.project.mp3player.ui.home.AlbumDetailAdapter.albumFiles;
 import static pdm.project.mp3player.ui.library.LibraryFragment.musicAdapter;
 
 import androidx.annotation.Nullable;
@@ -191,7 +192,17 @@ public class PlayerActivity<OnResume> extends AppCompatActivity implements Media
 
     private void getIntentMethod() {
         position = getIntent().getIntExtra("position", -1);
-        listSongs = musicFiles;
+        String sender = getIntent().getStringExtra("sender");
+
+        if ((sender != null) && (sender.equals("AlbumDetails"))) {
+            Log.e("PlayerActivity::getIntentMethod", "Reproduciendo album");
+            listSongs = albumFiles;
+        } else {
+            Log.e("PlayerActivity::getIntentMethod", "Reproduciendo todas las canciones");
+            listSongs = musicFiles;
+        }
+
+        //listSongs = musicFiles;
 
         if (listSongs != null) {
             playPauseButton.setImageResource(R.drawable.ic_pause);

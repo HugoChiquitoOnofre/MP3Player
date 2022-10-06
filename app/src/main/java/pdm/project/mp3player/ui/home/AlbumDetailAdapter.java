@@ -17,12 +17,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import pdm.project.mp3player.PlayerActivity;
 import pdm.project.mp3player.R;
 import pdm.project.mp3player.model.MusicFiles;
 
 public class AlbumDetailAdapter extends RecyclerView.Adapter<AlbumDetailAdapter.MyHolder> {
     private Context mContext;
-    private ArrayList<MusicFiles> albumFiles;
+    public static ArrayList<MusicFiles> albumFiles;
     View view;
 
     public AlbumDetailAdapter(Context mContext, ArrayList<MusicFiles> albumFiles) {
@@ -51,8 +52,16 @@ public class AlbumDetailAdapter extends RecyclerView.Adapter<AlbumDetailAdapter.
                     .load(R.drawable.avatar_256_725)
                     .into(holder.musicImage);
         }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, PlayerActivity.class);
+                intent.putExtra("sender", "AlbumDetails");
+                intent.putExtra("position", holder.getAdapterPosition());
 
-
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override

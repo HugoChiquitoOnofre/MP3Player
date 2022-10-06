@@ -1,5 +1,6 @@
 package pdm.project.mp3player.ui.home;
 
+import static pdm.project.mp3player.MainActivity.albums;
 import static pdm.project.mp3player.MainActivity.musicFiles;
 
 import android.os.Bundle;
@@ -38,9 +39,9 @@ public class HomeFragment extends Fragment {
         recyclerView = root.findViewById(R.id.recyclerView2);
         recyclerView.setHasFixedSize(true);
 
-        if (!(musicFiles.size() < 1)) {
+        if (!(albums.size() < 1)) {
             Log.e("HomeFragment: ", "Listando albumes...");
-            albumAdapter = new AlbumAdapter(getContext(), musicFiles);
+            albumAdapter = new AlbumAdapter(getContext(), albums);
             Log.e("HomeFragment:", "AlbumAdapter creado");
             recyclerView.setAdapter(albumAdapter);
             Log.e("HomeFragment:" ,"Adaptador establecido");

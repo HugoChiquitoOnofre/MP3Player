@@ -1,5 +1,7 @@
 package pdm.project.mp3player.provider;
 
+import static pdm.project.mp3player.MainActivity.albums;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -14,6 +16,7 @@ import pdm.project.mp3player.model.MusicFiles;
 public class MusicStore {
     private static ArrayList<MusicFiles> audioList;
     private static Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+    private static ArrayList<String> duplicated = new ArrayList<>();
 
     public static ArrayList<MusicFiles> getAllAudio(Context context) {
         audioList = new ArrayList<>();
@@ -39,6 +42,11 @@ public class MusicStore {
                 MusicFiles musicFiles = new MusicFiles(path, title, artist, album, duration, id);
                 Log.e("Path:" + path, "Album" + album);
                 audioList.add(musicFiles);
+
+                if (!duplicated.contains(album)) {
+                    albums.add(musicFiles);
+                    duplicated.add(album);
+                }
             }
             cursor.close();
         }
