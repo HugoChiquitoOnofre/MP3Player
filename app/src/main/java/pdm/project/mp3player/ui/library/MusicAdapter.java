@@ -1,8 +1,7 @@
-package pdm.project.mp3player.ui;
+package pdm.project.mp3player.ui.library;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaMetadata;
 import android.media.MediaMetadataRetriever;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +25,7 @@ import pdm.project.mp3player.model.MusicFiles;
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyViewHolder> {
 
     private Context mContext;
-    private ArrayList<MusicFiles> musicFiles;
+    static ArrayList<MusicFiles> musicFiles;
 
     public MusicAdapter(Context mContext, ArrayList<MusicFiles> musicFiles) {
         this.mContext = mContext;

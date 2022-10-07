@@ -1,8 +1,11 @@
 package pdm.project.mp3player;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -22,7 +25,6 @@ import pdm.project.mp3player.model.MusicFiles;
 import pdm.project.mp3player.provider.MusicStore;
 
 public class MainActivity extends AppCompatActivity {
-
     private ActivityMainBinding binding;
 
     //PERMISSION
@@ -30,8 +32,18 @@ public class MainActivity extends AppCompatActivity {
 
     //MP3
     public static ArrayList<MusicFiles> musicFiles;
-    static boolean shuffleBoolean = false, repeatBoolean = false;
     public static ArrayList<MusicFiles> albums = new ArrayList<>();
+    public static ArrayList<MusicFiles> listSearchSongs;
+    static boolean shuffleBoolean = false, repeatBoolean = false;
+    public static String MUSIC_FILE_LAST_PLAYED = "LAST_PLAYED";
+    public static String MUSIC_FILE = "STORED_MUSIC";
+    public static boolean SHOW_MINI_PLAYER = false;
+    public static String PATH_TO_FRAG = null;
+    public static String ARTIST_NAME = "ARTIST_NAME";
+    public static String SONG_NAME = "SONG_NAME";
+    public static String ARTIST_TO_FRAG = null;
+    public static String SONG_NAME_TO_FRAG = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +66,33 @@ public class MainActivity extends AppCompatActivity {
                             , REQUEST_CODE);
                 }
             }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.search_bar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences(MUSIC_FILE_LAST_PLAYED, MODE_PRIVATE);
+        String path = preferences.getString(MUSIC_FILE, null);
+        String artist = preferences.getString(ARTIST_NAME, null);
+        String songName = preferences.getString(SONG_NAME, null);
+
+        if (path != null) {
+            SHOW_MINI_PLAYER = true;
+            PATH_TO_FRAG = path;
+            ARTIST_TO_FRAG = artist;
+            SONG_NAME_TO_FRAG = songName;
+        } else {
+            SHOW_MINI_PLAYER = false;
+            PATH_TO_FRAG = null;
+            ARTIST_TO_FRAG = null;
+            SONG_NAME_TO_FRAG = null;
         }
     }
 
@@ -83,5 +122,7 @@ public class MainActivity extends AppCompatActivity {
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
     }
+
+
 
 }
