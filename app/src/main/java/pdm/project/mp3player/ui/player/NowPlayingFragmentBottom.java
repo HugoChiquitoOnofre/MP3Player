@@ -30,6 +30,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import pdm.project.mp3player.PlayerActivity;
 import pdm.project.mp3player.R;
 
 public class NowPlayingFragmentBottom extends Fragment implements ServiceConnection {
@@ -63,7 +64,7 @@ public class NowPlayingFragmentBottom extends Fragment implements ServiceConnect
         playPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "play pause", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "play pause", Toast.LENGTH_SHORT).show();
                 if (musicService != null) {
                     musicService.playPauseButtonClicked();
                     if (musicService.isPlaying()) {
@@ -78,7 +79,7 @@ public class NowPlayingFragmentBottom extends Fragment implements ServiceConnect
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "next", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "next", Toast.LENGTH_SHORT).show();
                 if (musicService != null) {
                     musicService.nextButtonClicked();
                     if (getActivity() != null) {
@@ -125,12 +126,14 @@ public class NowPlayingFragmentBottom extends Fragment implements ServiceConnect
             }
         });
 
+
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+
         if (SHOW_MINI_PLAYER) {
             if (PATH_TO_FRAG != null) {
                 byte[] art = getAlbumArt(PATH_TO_FRAG);

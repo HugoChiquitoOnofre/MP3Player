@@ -45,7 +45,6 @@
                 android:value="" />
         </activity>
 
-        <service android:name="pdm.project.mp3player.ui.player.MusicService" android:enabled="true"/>
         <receiver android:name="pdm.project.mp3player.ui.player.NotificationReceiver"
             android:enabled="true"
             android:exported="true">
@@ -56,6 +55,7 @@
             </intent-filter>
         </receiver>
 
+        <service android:name="pdm.project.mp3player.ui.player.MusicService" />
     </application>
 
 </manifest>

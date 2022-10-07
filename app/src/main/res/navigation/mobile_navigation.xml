@@ -22,4 +22,14 @@
         android:name="pdm.project.mp3player.ui.library.LibraryFragment"
         android:label="@string/title_library"
         tools:layout="@layout/fragment_library" />
+    <activity
+        android:id="@+id/playerActivity"
+        android:name="pdm.project.mp3player.PlayerActivity"
+        android:label="activity_player"
+        tools:layout="@layout/activity_player" />
+    <fragment
+        android:id="@+id/nowPlayingFragmentBottom"
+        android:name="pdm.project.mp3player.ui.player.NowPlayingFragmentBottom"
+        android:label="fragment_now_playing_bottom"
+        tools:layout="@layout/fragment_now_playing_bottom" />
 </navigation>

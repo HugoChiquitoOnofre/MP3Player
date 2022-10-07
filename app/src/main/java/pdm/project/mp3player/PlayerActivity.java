@@ -154,7 +154,7 @@ public class PlayerActivity<OnResume> extends AppCompatActivity implements Actio
                 popupMenu.setOnMenuItemClickListener((item -> {
                     switch (item.getItemId()){
                         case R.id.delete:
-                            Toast.makeText(getApplicationContext(), "Borrando canción", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Borrando canción", Toast.LENGTH_SHORT).show();
                             deleteFile(position, v);
                             break;
                     }
@@ -603,7 +603,7 @@ public class PlayerActivity<OnResume> extends AppCompatActivity implements Actio
         musicService = myBinder.getService();
         musicService.getCallBack(this);
 
-        Toast.makeText(this, "Conectado" + musicService,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Conectado" + musicService,Toast.LENGTH_SHORT).show();
 
         seekBar.setMax(musicService.getDuration()/1000);
         metadata(uri);

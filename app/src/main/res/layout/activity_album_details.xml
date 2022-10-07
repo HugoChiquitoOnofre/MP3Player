@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradiant_bg"
+    android:background="@drawable/gradient"
     android:orientation="vertical"
     tools:context=".ui.home.AlbumDetails">
 
@@ -23,6 +23,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAlbum"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/album_photo"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/album_photo"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="6dp"
+        tools:itemCount="1" />
+
+
+
 </RelativeLayout>

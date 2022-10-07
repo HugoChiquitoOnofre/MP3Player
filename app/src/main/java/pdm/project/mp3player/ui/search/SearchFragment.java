@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
@@ -29,6 +30,7 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
     RecyclerView recyclerView;
     SearchView searchView;
     SearchAdapter searchAdapter;
+    ImageView imageView;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,6 +46,8 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
 
         recyclerView = root.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
+
+        imageView = root.findViewById(R.id.photo);
 
         return root;
     }
@@ -65,12 +69,19 @@ public class SearchFragment extends Fragment implements SearchView.OnQueryTextLi
         String userInput = newText.toLowerCase(Locale.ROOT);
         listSearchSongs = new ArrayList<>();
         Log.e("search", userInput);
+
+
         for (MusicFiles song: musicFiles) {
             if ((!userInput.isEmpty()) && (song.getTitle().toLowerCase().contains(userInput) || song.getArtist().toLowerCase(Locale.ROOT).contains(userInput))) {
                 listSearchSongs.add(song);
             }
         }
 
+        if (listSearchSongs.size() > 0) {
+            imageView.setVisibility(View.GONE);
+        } else {
+            imageView.setVisibility(View.VISIBLE);
+        }
         Log.e("SearchFragment: ", "Listando canciones encontradas...");
         searchAdapter = new SearchAdapter(getContext(), listSearchSongs);
         Log.e("SearchFragment:", "MusicAdapter creado");

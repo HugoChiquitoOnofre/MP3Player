@@ -8,10 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="background_menu">#211F1F</color>
+    <color name="background_menu">#171616</color>
     <color name="background">#2C2C2C</color>
     <color name="optional">#36136F</color>
-    <color name="background_buttons">#0396A6</color>
+    <color name="background_buttons">#CB0378A6</color>
     <color name="text">#f4f4f4</color>
 
 </resources>
